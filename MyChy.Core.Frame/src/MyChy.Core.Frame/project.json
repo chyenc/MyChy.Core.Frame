@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": "1.1.0",
+    "MyChy.Core.Frame.Common": {
+      "version": "1.0.0-*",
+      "target": "project"
+    }
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  },
+  "runtimes": {
+    "win10-x64": {},
+    "win81-x64": {},
+    "win8-x64": {},
+    "win7-x64": {},
+    "centos.7-x64": {}
+  }
+}
