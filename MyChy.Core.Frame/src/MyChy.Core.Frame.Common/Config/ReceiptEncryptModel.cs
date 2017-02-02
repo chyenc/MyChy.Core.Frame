@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace MyChy.Core.Frame.Common.Config
 {
-    public class MemoryCacheConfig
+    public class ReceiptEncryptModel
     {
-        public bool IsCache { get; set; }
+        public string Encrypt { get; set; }
 
-        public int Second { get; set; }
+        public string Sign { get; set; }
     }
 }

@@ -6,10 +6,8 @@
 
   "dependencies": {
     "Microsoft.NETCore.App": "1.1.0",
-    "MyChy.Core.Frame.Common": {
-      "version": "1.0.0-*",
-      "target": "project"
-    }
+    "MyChy.Core.Frame.Common": "1.0.0-*",
+    "System.Text.Encoding.CodePages": "4.3.0"
   },
 
   "frameworks": {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MyChy.Core.Frame.Common.Helper;
 
-namespace MyChy.Core.Frame.Common.Config
+namespace MyChy.Core.Frame.Common.Helper
 {
     public class ConfigHelper
     {

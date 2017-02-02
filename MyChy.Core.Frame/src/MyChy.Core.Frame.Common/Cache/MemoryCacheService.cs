@@ -3,34 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
-using MyChy.Core.Frame.Common.Config;
+using MyChy.Core.Frame.Common.Helper;
 
-namespace MyChy.Core.Frame.Common
+namespace MyChy.Core.Frame.Common.Cache
 {
-    public class MemoryCache
+    public class MemoryCacheService: ICacheService
     {
-        private static readonly MemoryCacheConfig Config = null;
+        protected IMemoryCache _cache;
+        private readonly MemoryCacheConfig Config = null;
+        public readonly bool IsCache;
 
-        public static readonly bool IsCache;
-        // private MDictionary<string, object> theCache = new MDictionary<string, object>(2048, StringComparer.OrdinalIgnoreCase);
-        //  MemcachedClient client;
-        private IMemoryCache _cache;
-
-        static MemoryCache()
+        public MemoryCacheService(IMemoryCache cache)
         {
-            // CacheManage
             if (Config != null) return;
             var config = new ConfigHelper();
             Config = config.Reader<MemoryCacheConfig>("config/MemoryCache.json");
             if (Config == null || Config.Second == 0)
             {
-                Config = new MemoryCacheConfig { IsCache = false };
+                Config = new MemoryCacheConfig {IsCache = false};
             }
             IsCache = Config.IsCache;
-        }
-
-        public MemoryCache(IMemoryCache cache)
-        {
             _cache = cache;
         }
 
@@ -52,6 +44,7 @@ namespace MyChy.Core.Frame.Common
         }
 
         #region 添加缓存
+
         /// <summary>
         /// 添加缓存
         /// </summary>
@@ -103,22 +96,16 @@ namespace MyChy.Core.Frame.Common
             {
                 return;
             }
-            //if (key == null)
-            //{
-            //    throw new ArgumentNullException(nameof(key));
-            //}
-            //if (value == null)
-            //{
-            //    throw new ArgumentNullException(nameof(value));
-            //}
             _cache.Set(key, value,
                 new MemoryCacheEntryOptions()
                     .SetSlidingExpiration(expiresSliding)
                     .SetAbsoluteExpiration(expiressAbsoulte)
-            );
-
+                );
         }
+
         #endregion
+
+        #region 删除缓存
 
         /// <summary>
         /// 删除缓存
@@ -134,6 +121,7 @@ namespace MyChy.Core.Frame.Common
             }
             _cache.Remove(key);
         }
+
         /// <summary>
         /// 批量删除缓存
         /// </summary>
@@ -147,7 +135,80 @@ namespace MyChy.Core.Frame.Common
                 return;
             }
             keys.ToList().ForEach(item => _cache.Remove(item));
+
         }
+        #endregion
+
+        #region 获取缓存
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="key">缓存Key</param>
+        /// <param name="def">默认值</param>
+        /// <returns></returns>
+        public T Get<T>(string key, T def)
+        {
+            return Get(key).To<T>(def);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="key">缓存Key</param>
+        /// <returns></returns>
+        public T Get<T>(string key)
+        {
+            return Get(key).To<T>();
+        }
+
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="key">缓存Key</param>
+        /// <returns></returns>
+        public object Get(string key)
+        {
+            return string.IsNullOrEmpty(key) ? null : _cache.Get(key);
+        }
+
+
+        /// <summary>
+        /// 获取缓存集合
+        /// </summary>
+        /// <param name="keys">缓存Key集合</param>
+        /// <returns></returns>
+        public IDictionary<string, object> GetAll(IEnumerable<string> keys)
+        {
+            if (keys == null)
+            {
+                throw new ArgumentNullException(nameof(keys));
+            }
+
+            var dict = new Dictionary<string, object>();
+
+            keys.ToList().ForEach(item => dict.Add(item, _cache.Get(item)));
+
+            return dict;
+        }
+
+        #endregion
+
+        #region 释放
+
+        /// <summary>
+        /// 释放
+        /// </summary>
+        /// <returns></returns>
+        public void Dispose()
+        {
+            if (_cache != null)
+                _cache.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
 
     }
 }
