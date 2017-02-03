@@ -9,21 +9,21 @@ namespace MyChy.Core.Frame.Common.Cache
 {
     public class MemoryCacheService: ICacheService
     {
-        protected IMemoryCache _cache;
-        private readonly MemoryCacheConfig Config = null;
+        protected IMemoryCache Cache;
+        private readonly MemoryCacheConfig _config = null;
         public readonly bool IsCache;
 
         public MemoryCacheService(IMemoryCache cache)
         {
-            if (Config != null) return;
+            if (_config != null) return;
             var config = new ConfigHelper();
-            Config = config.Reader<MemoryCacheConfig>("config/MemoryCache.json");
-            if (Config == null || Config.Second == 0)
+            _config = config.Reader<MemoryCacheConfig>("config/MemoryCache.json");
+            if (_config == null || _config.Second == 0)
             {
-                Config = new MemoryCacheConfig {IsCache = false};
+                _config = new MemoryCacheConfig {IsCache = false};
             }
-            IsCache = Config.IsCache;
-            _cache = cache;
+            IsCache = _config.IsCache;
+            Cache = cache;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace MyChy.Core.Frame.Common.Cache
                 // throw new ArgumentNullException(nameof(key));
             }
             object cached;
-            return _cache.TryGetValue(key, out cached);
+            return Cache.TryGetValue(key, out cached);
         }
 
         #region 添加缓存
@@ -53,7 +53,7 @@ namespace MyChy.Core.Frame.Common.Cache
         /// <returns></returns>
         public void Set(string key, object value)
         {
-            Set(key, value, Config.Second);
+            Set(key, value, _config.Second);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MyChy.Core.Frame.Common.Cache
             {
                 return;
             }
-            _cache.Set(key, value,
+            Cache.Set(key, value,
                 new MemoryCacheEntryOptions()
                     .SetSlidingExpiration(expiresSliding)
                     .SetAbsoluteExpiration(expiressAbsoulte)
@@ -119,7 +119,7 @@ namespace MyChy.Core.Frame.Common.Cache
             {
                 return;
             }
-            _cache.Remove(key);
+            Cache.Remove(key);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace MyChy.Core.Frame.Common.Cache
             {
                 return;
             }
-            keys.ToList().ForEach(item => _cache.Remove(item));
+            keys.ToList().ForEach(item => Cache.Remove(item));
 
         }
         #endregion
@@ -170,7 +170,7 @@ namespace MyChy.Core.Frame.Common.Cache
         /// <returns></returns>
         public object Get(string key)
         {
-            return string.IsNullOrEmpty(key) ? null : _cache.Get(key);
+            return string.IsNullOrEmpty(key) ? null : Cache.Get(key);
         }
 
 
@@ -188,7 +188,7 @@ namespace MyChy.Core.Frame.Common.Cache
 
             var dict = new Dictionary<string, object>();
 
-            keys.ToList().ForEach(item => dict.Add(item, _cache.Get(item)));
+            keys.ToList().ForEach(item => dict.Add(item, Cache.Get(item)));
 
             return dict;
         }
@@ -203,8 +203,8 @@ namespace MyChy.Core.Frame.Common.Cache
         /// <returns></returns>
         public void Dispose()
         {
-            if (_cache != null)
-                _cache.Dispose();
+            if (Cache != null)
+                Cache.Dispose();
             GC.SuppressFinalize(this);
         }
 

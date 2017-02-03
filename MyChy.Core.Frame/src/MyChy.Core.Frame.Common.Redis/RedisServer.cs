@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MyChy.Core.Frame.Common.Cache;
 using MyChy.Core.Frame.Common.Helper;
 using StackExchange.Redis;
 
@@ -10,6 +11,8 @@ namespace MyChy.Core.Frame.Common.Redis
     public class RedisServer
     {
         private const string Dateformat = "yyyy-MM-dd";
+
+        private static readonly MemoryCacheService MemoryCache = null;
 
         private static readonly RedisConfig Config = null;
 
@@ -24,7 +27,7 @@ namespace MyChy.Core.Frame.Common.Redis
         {
             var config = new ConfigHelper();
             Config = config.Reader<RedisConfig>("config/Redis.json");
-
+            MemoryCache=new MemoryCacheService(null);
             //var redisConfig = WebConfig.AppSettingsName<string>("RedisConfig", "config/redis.cfg");
             //if (Config != null) return;
             ////var file=IoFiles.GetFileMapPath("config/redis.cfg")
@@ -790,9 +793,9 @@ namespace MyChy.Core.Frame.Common.Redis
         {
             if (!isDelYesterday) return;
             var keyday = key + DateTime.Now.Date.AddDays(-1).ToString(Dateformat);
-            if (Config.IsWebCache && WebCache.IsCache)
+            if (Config.IsWebCache && MemoryCache.IsCache)
             {
-                var isdel = WebCache.GetCache(keyday, 0);
+                var isdel = MemoryCache.Get(keyday, 0);
                 if (isdel != 0) return;
                 //var val = ExistsKey(keyday + keyAttached);
                 //if (!val)
@@ -800,7 +803,7 @@ namespace MyChy.Core.Frame.Common.Redis
                 // StringDaySetCacheAsync(keyday + keyAttached, "1");
                 Remove(keyday);
                 // }
-                WebCache.SetCache(key, 1, 360);
+                MemoryCache.Set(key, 1, 360);
             }
             else
             {

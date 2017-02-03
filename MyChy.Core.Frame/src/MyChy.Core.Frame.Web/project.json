@@ -19,7 +19,9 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     "Microsoft.NETCore.App": "1.1.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
-    "MyChy.Core.Frame.Common": "1.0.0-*"
+    "MyChy.Core.Frame.Common": "1.0.0-*",
+    "System.Text.Encoding.CodePages": "4.3.0",
+    "NLog.Web.AspNetCore": "4.3.0"
   },
 
   "tools": {
@@ -52,7 +54,8 @@
       "wwwroot",
       "**/*.cshtml",
       "appsettings.json",
-      "web.config"
+      "web.config",
+      "nlog.config"
     ]
   },
 
@@ -64,7 +67,7 @@
     "win10-x64": {},
     "win81-x64": {},
     "win8-x64": {},
-    "win7-x64": {},
+  "win7-x64": {},
     "centos.7-x64": {}
   }
 }

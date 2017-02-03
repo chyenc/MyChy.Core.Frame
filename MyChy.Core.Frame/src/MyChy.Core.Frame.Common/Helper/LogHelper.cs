@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using log4net;
-using log4net.Core;
+using NLog;
 
 namespace MyChy.Core.Frame.Common.Helper
 {
     public class LogHelper
     {
-        private static readonly ILog ILog = null;
+        private static readonly Logger ILog = null;
 
         static LogHelper()
         {
@@ -21,7 +20,8 @@ namespace MyChy.Core.Frame.Common.Helper
             //loggerFactory.AddProvider(new ConsoleLoggerProvider(filter, false));
             //loggerFactory.AddProvider(new DebugLoggerProvider(filter));
             //ILogger logger = loggerFactory.CreateLogger("App");
-            ILog = LogManager.GetLogger(typeof(LogHelper));
+            //LogManager.
+            ILog = LogManager.GetCurrentClassLogger();
         }
 
         /// <summary>

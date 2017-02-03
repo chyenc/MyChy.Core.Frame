@@ -6,13 +6,13 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "log4net": "2.0.7",
     "Microsoft.AspNetCore.Http": "1.1.0",
     "Microsoft.Extensions.Caching.Memory": "1.1.0",
     "Microsoft.Extensions.Configuration": "1.1.0",
     "Microsoft.Extensions.Configuration.Binder": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
-    "NETStandard.Library": "1.6.1"
+    "NETStandard.Library": "1.6.1",
+    "NLog.Web.AspNetCore": "4.3.0"
   },
 
   "frameworks": {
