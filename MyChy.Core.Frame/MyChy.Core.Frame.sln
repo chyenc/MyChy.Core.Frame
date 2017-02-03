@@ -16,6 +16,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyChy.Core.Frame.Common", "
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyChy.Core.Frame.Web", "src\MyChy.Core.Frame.Web\MyChy.Core.Frame.Web.xproj", "{7D3C4A7B-CBD1-4F9B-87A2-C7CC2E510E5B}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyChy.Core.Frame.Common.Redis", "src\MyChy.Core.Frame.Common.Redis\MyChy.Core.Frame.Common.Redis.xproj", "{DBB08C99-49DB-403F-BC15-5AEBACDB5153}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{7D3C4A7B-CBD1-4F9B-87A2-C7CC2E510E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D3C4A7B-CBD1-4F9B-87A2-C7CC2E510E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D3C4A7B-CBD1-4F9B-87A2-C7CC2E510E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB08C99-49DB-403F-BC15-5AEBACDB5153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB08C99-49DB-403F-BC15-5AEBACDB5153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB08C99-49DB-403F-BC15-5AEBACDB5153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB08C99-49DB-403F-BC15-5AEBACDB5153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +48,6 @@ Global
 		{BFFA5D74-2E2B-40B8-8B48-64C2D0DE9F44} = {7B96257C-5CE0-45FB-8160-468A3A71C891}
 		{3314CA7C-EF3C-4984-8059-F2EFB56DD8E5} = {7B96257C-5CE0-45FB-8160-468A3A71C891}
 		{7D3C4A7B-CBD1-4F9B-87A2-C7CC2E510E5B} = {7B96257C-5CE0-45FB-8160-468A3A71C891}
+		{DBB08C99-49DB-403F-BC15-5AEBACDB5153} = {7B96257C-5CE0-45FB-8160-468A3A71C891}
 	EndGlobalSection
 EndGlobal

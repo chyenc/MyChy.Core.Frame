@@ -15,7 +15,7 @@ namespace MyChy.Core.Frame.Common.Helper
             var configurationBuilder = new ConfigurationBuilder();
             try
             {
-                var file = IoFilesHelper.GetFileMapPath(fileConfig);
+                var file = FileHelper.GetFileMapPath(fileConfig);
                 configurationBuilder.AddJsonFile(file);
                 return configurationBuilder.Build().Get<T>();
             }

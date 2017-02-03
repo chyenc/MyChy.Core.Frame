@@ -8,6 +8,7 @@ using MyChy.Core.Frame.Common;
 using MyChy.Core.Frame.Common.Cache;
 using MyChy.Core.Frame.Common.Config;
 using MyChy.Core.Frame.Common.Helper;
+using MyChy.Core.Frame.Dto;
 
 public class Program
     {
@@ -75,6 +76,7 @@ public class Program
 </xml>
 ";
         var yy = StringHelper.XmlToIDictionary(ss);
+        var model = ModelHelper.ModelByIDictionary<DemoCode>(yy);
     }
 
     }
