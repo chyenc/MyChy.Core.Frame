@@ -39,6 +39,7 @@ namespace MyChy.Core.Frame.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //增加对中文的支持
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             //loggerFactory.AddDebug();
@@ -47,8 +48,9 @@ namespace MyChy.Core.Frame.Web
 
             //add NLog.Web
             app.AddNLogWeb();
-            //env.ConfigureNLog("nlog.config");
+            env.ConfigureNLog("nlog.config");
 
+            //判断是否调试模式,调试模式显示具体错误信息
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

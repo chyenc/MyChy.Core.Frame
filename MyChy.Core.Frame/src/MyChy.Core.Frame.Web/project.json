@@ -6,7 +6,6 @@
     },
     "BundlerMinifier.Core": "2.2.306",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
-    "Microsoft.AspNetCore.Mvc": "1.1.0",
     "Microsoft.AspNetCore.Routing": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
@@ -21,12 +20,19 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
     "MyChy.Core.Frame.Common": "1.0.0-*",
     "System.Text.Encoding.CodePages": "4.3.0",
-    "NLog.Web.AspNetCore": "4.3.0"
+    "NLog.Web.AspNetCore": "4.3.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.1",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "MyChy.Core.Frame.Common.EfData": "1.0.0-*",
+    "MyChy.Core.Frame.Common.Redis": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.1.0"
   },
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
+    "BundlerMinifier.Core": "2.2.306"
   },
 
   "frameworks": {

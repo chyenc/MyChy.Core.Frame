@@ -20,7 +20,7 @@ namespace MyChy.Core.Frame.Web.Controllers
         public IActionResult Index()
         {
             _logger.LogError("1234123123");
-            LogHelper.LogError("asd2");
+           // LogHelper.LogError("asd2");
             return View();
         }
 
