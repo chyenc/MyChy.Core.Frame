@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyChy.Core.Frame.Common.Cache
 {
-    interface ICacheService
+    public interface ICacheService
     {
         /// <summary>
         /// 验证缓存项是否存在

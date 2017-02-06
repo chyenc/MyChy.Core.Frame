@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
 using NLog.Extensions.Logging;
+using MyChy.Core.Frame.Common.Cache;
 
 namespace MyChy.Core.Frame.Web
 {
@@ -33,7 +35,18 @@ namespace MyChy.Core.Frame.Web
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Add framework services.
+
+            services.AddMemoryCache();
+            services.AddSingleton<IMemoryCache>(factory =>
+            {
+                var cache = new MemoryCache(new MemoryCacheOptions());
+                return cache;
+            });
+            services.AddSingleton<ICacheService, MemoryCacheService>();
+
             services.AddMvc();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

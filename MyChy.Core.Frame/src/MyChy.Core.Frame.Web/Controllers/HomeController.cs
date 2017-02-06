@@ -5,20 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyChy.Core.Frame.Common.Helper;
+using MyChy.Core.Frame.Common.Cache;
 
 namespace MyChy.Core.Frame.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger _logger = null;
+        private readonly ICacheService _ICache = null;
 
-        public HomeController(ILoggerFactory logFactory)
+        public HomeController(ILoggerFactory logFactory, ICacheService cacheService)
         {
             this._logger = logFactory.CreateLogger(nameof(HomeController));
+            this._ICache = cacheService;
         }
 
         public IActionResult Index()
         {
+           // _ICache.Set("web", "1");
+            // var ss = _ICache.Get<string>("web");
+
             _logger.LogError("1234123123");
            // LogHelper.LogError("asd2");
             return View();
