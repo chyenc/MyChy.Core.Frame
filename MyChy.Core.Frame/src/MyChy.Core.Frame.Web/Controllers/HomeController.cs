@@ -6,18 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyChy.Core.Frame.Common.Helper;
 using MyChy.Core.Frame.Common.Cache;
+using MyChy.Core.Frame.Common;
 
 namespace MyChy.Core.Frame.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger _logger = null;
-        private readonly ICacheService _ICache = null;
+        private readonly ICacheService _iCache = null;
 
         public HomeController(ILoggerFactory logFactory, ICacheService cacheService)
         {
             this._logger = logFactory.CreateLogger(nameof(HomeController));
-            this._ICache = cacheService;
+            this._iCache = cacheService;
         }
 
         public IActionResult Index()
@@ -33,7 +34,7 @@ namespace MyChy.Core.Frame.Web.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-             
+       
             return View();
         }
 

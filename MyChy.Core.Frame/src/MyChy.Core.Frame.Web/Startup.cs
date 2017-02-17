@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using NLog.Extensions.Logging;
 using MyChy.Core.Frame.Common.Cache;
+using MyChy.Core.Frame.Web.Controllers;
 
 namespace MyChy.Core.Frame.Web
 {
@@ -43,10 +44,14 @@ namespace MyChy.Core.Frame.Web
                 return cache;
             });
             services.AddSingleton<ICacheService, MemoryCacheService>();
+            services.AddSingleton<IFoo, Foo>();
 
             services.AddMvc();
 
-
+           // IServiceProvider serviceProvider = services.BuildServiceProvider();
+           // var memory= serviceProvider.GetServices<ICacheService>();
+       
+            //  services.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
